@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       speed = 2;
+       
     }
 
     // Update is called once per frame
@@ -29,22 +29,43 @@ public class PlayerController : MonoBehaviour
         this allows coders to efficently create logic with unity via vector3.
         vector2 and 3 should mainly be used in void update, otherwise it wont run every frame as it should.
         */ 
-        transform.Translate(Vector3.forward * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed);
         /*Time.deltaTime uses time intervals to act as a timer for 
         code in void update, that way insead of running every frame,
         it should run in different time intervals.
         notice how we are multiplying though, this allows the forward code
         to be multiplied by low time numbers to slow down objects.
         */
-        if(Input.GetKeyDown(KeyCode.D))
+        //Input.GetKey allows the player to hold a specific key for the following code to function.
+        //theres also Input.GetKeyDown, which only triggers once if the player inputs the key.
+        if(Input.GetKey(KeyCode.D))
 
         {
             transform.position += Vector3.right * speed;
         }
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKey(KeyCode.A))
 
         {
             transform.position += Vector3.left * speed;
         }
+        if(Input.GetKey(KeyCode.W))
+
+        {
+            transform.position += Vector3.up * speed;
+        }
+        
+    }
+    //OnCollisionEnter allows collisions to be identified if your game object collides with another game object.
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("obstacle"))
+        {
+            Destroy(gameObject);
+        }
+
+
+
+
+
     }
 }
