@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
  public float speed;
-
+ //allows other scripts to regonize the name for this script. player = PlayerController script.
+ public GameObject player;
 
     //void start only calls up on the code for the first frame, no other frames. single use.
     // Start is called before the first frame update
@@ -58,8 +59,11 @@ public class PlayerController : MonoBehaviour
     //OnCollisionEnter allows collisions to be identified if your game object collides with another game object.
     void OnCollisionEnter(Collision collision)
     {
+        /*this line of code states, if our current game object(player) collides with a game object that is tagged 'obstacle',
+        then it will destroy that gameobject tagged obstacle. */
         if(collision.gameObject.CompareTag("obstacle"))
         {
+            //destroys said gameobject that is either tagged, or named as variable.
             Destroy(gameObject);
         }
 
