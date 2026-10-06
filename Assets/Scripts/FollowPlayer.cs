@@ -20,7 +20,21 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*allows the gameObject to have the same (x,y,z) cords. 
+        /*
+        allows the gameObject to have the same (x,y,z) cords. 
+        be careful when using this, otherwise the cam will
+        be inside whichever object you selected. 
+        transform.position = player.transform.position + offset;
+        transform.Translate(Vector3.forward * speed);
+        if(player == null)
+        {
+            speed = 0;
+        }
+        */
+    }
+    void LateUpdate()
+    {
+         /*allows the gameObject to have the same (x,y,z) cords. 
         be careful when using this, otherwise the cam will
         be inside whichever object you selected. */
         transform.position = player.transform.position + offset;
